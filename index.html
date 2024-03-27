@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0px;
+
+        padding: 0px;
+
+        box-sizing: border-box;
+      }
+
+      .img_box {
+        position: relative;
+      }
+
+      .img_content {
+        opacity: 0.5;
+        height: 100vh;
+        width: 100vw;
+      }
+      #typing-container {
+        position: absolute;
+        font-family: "Playpen Sans", cursive;
+        color: black;
+        font-weight: bold;
+        font-size: 40px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .main-content {
+        position: absolute;
+        font-family: "Playpen Sans", cursive;
+        color: black;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .body-text {
+        display: flex;
+        position: absolute;
+        font-family: "Playpen Sans", cursive;
+        opacity: 1;
+
+        align-items: center;
+
+        justify-content: center;
+      }
+
+      nav {
+        display: flex;
+
+        justify-content: space-around;
+
+        align-items: center;
+
+        min-height: 8vh;
+
+        background-color: #756ab6;
+
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .heading {
+        color: white;
+
+        text-transform: uppercase;
+
+        letter-spacing: 5px;
+
+        font-size: 20px;
+      }
+
+      body {
+        background-size: cover;
+
+        background-position: center;
+
+        background-repeat: no-repeat;
+
+        background-attachment: fixed;
+
+        width: 100vw;
+        overflow-y: hidden; /* Hide vertical scrollbar */
+        overflow-x: hidden;
+      }
+    </style>
+
+    <title>Home</title>
+  </head>
+
+  <body>
+    <nav>
+      <div class="heading">
+        <h4>Sort Visualizer</h4>
+      </div>
+
+      <ul class="nav-links">
+        <li><a class="active" href="index.html">Home</a></li>
+
+        <li><a href="about.html">About</a></li>
+
+        <li><a href="sort.html">Sorting</a></li>
+
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="img_box">
+      <img
+        class="img_content"
+        src="https://www.crio.do/blog/content/images/2022/02/Sorting-Algorithms.png"
+        alt=""
+      />
+      <div id="typing-container"></div>
+    </div>
+
+    <script>
+      const textToType =
+        "See the Order Unfold: Sorting Visualizer, Bringing Algorithms to Life!"; // Replace this with your desired text
+      const typingSpeed = 110; // Adjust the speed in milliseconds
+
+      let index = 0;
+      const container = document.getElementById("typing-container");
+
+      function typeText() {
+        container.textContent += textToType[index];
+        index++;
+
+        if (index < textToType.length) {
+          setTimeout(typeText, typingSpeed);
+        } else {
+          // Typing is complete, reset for the next iteration
+          setTimeout(resetText, typingSpeed);
+        }
+      }
+
+      function resetText() {
+        container.textContent = "";
+        index = 0;
+        setTimeout(typeText, typingSpeed);
+      }
+
+      // Start the initial typing
+      window.onload = function () {
+        typeText();
+      };
+    </script>
+  </body>
+</html>

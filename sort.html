@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Sorting visualizer</title>
+    <style>
+      
+     
+
+      .body-text {
+        display: flex;
+
+        font-family: "Montserrat", sans-serif;
+
+        align-items: center;
+
+        justify-content: center;
+
+        margin-top: 250px;
+      }
+
+      
+
+      .heading {
+        color: white;
+
+        text-transform: uppercase;
+
+        letter-spacing: 5px;
+
+        font-size: 20px;
+      }
+      #algorithm-info {
+    max-width: 800px; /* Reduced max-width for the algorithm info container */
+    margin: 20px auto; /* Center the container horizontally */
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #algorithm-info p {
+    font-size: 18px; /* Increased font size for algorithm details */
+    line-height: 1.6; /* Adjusted line height for better readability */
+    text-align: justify; /* Justify text alignment for better presentation */
+  }
+
+  
+     
+      
+        
+    
+      
+    </style>
+  </head>
+
+  <body>
+    <nav class="nav_s">
+      <div class="heading">
+        <h4>Sort Visualizer</h4>
+      </div>
+
+      <ul class="nav-links">
+        <li><a class="active" href="index.html">Home</a></li>
+
+        <li><a href="about.html">About</a></li>
+
+        <li><a href="sort.html">Sorting</a></li>
+
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+      <div class="navbar" id="navbar">
+        <a id="random" onclick="RenderScreen()">Generate array</a>
+        <span class="options">
+          <select name="select sort algorithm" id="menu" class="algo-menu" onchange="showAlgorithmInfo()">
+            <option value="0">Choose algorithm</option>
+            <option value="1">Bubble Sort</option>
+            <option value="2">Selection Sort</option>
+            <option value="3">Insertion Sort</option>
+            <option value="4">Merge Sort</option>
+            <option value="5">Quick Sort</option>
+          </select>
+        </span>
+        <span class="options">
+          <select name="select array size" id="menu" class="size-menu">
+            <option value="0">Array size</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="60">60</option>
+            <option value="70">70</option>
+            <option value="80">80</option>
+            <option value="90">90</option>
+            <option value="100">100</option>
+          </select>
+        </span>
+        <span class="options">
+          <select name="speed of visualization" id="menu" class="speed-menu">
+            <option value="0">Speed</option>
+            <option value="0.5">0.50x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1">1.00x</option>
+            <option value="2">2.00x</option>
+            <option value="4">4.00x</option>
+          </select>
+        </span>
+        <a class="start">Sort</a>
+        <a class="icon"><i class="fa fa-bars"></i></a>
+        
+      </div>
+    </div>
+    <div class="center">
+      <div class="array"></div>
+    </div>
+    <div id="algorithm-info" class="but_container">
+    </div>
+
+<script>
+    function showAlgorithmInfo() {
+        var algoDropdown = document.getElementById("menu");
+        var selectedAlgorithm = algoDropdown.options[algoDropdown.selectedIndex].text;
+        var infoDiv = document.getElementById("algorithm-info");
+
+        // Information about sorting algorithms
+        var algorithmInfo = {
+            "Bubble Sort": " Bubble sort Algorithm. The working procedure of bubble sort is simplest. This article will be very helpful and interesting to students as they might face bubble sort as a question in their examinations. So, it is important to discuss the topic.Bubble sort works on the repeatedly swapping of adjacent elements until they are not in the intended order. It is called bubble sort because the movement of array elements is just like the movement of air bubbles in the water. Bubbles in water rise up to the surface; similarly, the array elements in bubble sort move to the end in each iteration.Although it is simple to use, it is primarily used as an educational tool because the performance of bubble sort is poor in the real world. It is not suitable for large data sets. The average and worst-case complexity of Bubble sort is O(n2), where n is a number of items.",
+            "Selection Sort": "In selection sort, the smallest value among the unsorted elements of the array is selected in every pass and inserted to its appropriate position into the array. It is also the simplest algorithm. It is an in-place comparison sorting algorithm. In this algorithm, the array is divided into two parts, first is sorted part, and another one is the unsorted part. Initially, the sorted part of the array is empty, and unsorted part is the given array. Sorted part is placed at the left, while the unsorted part is placed at the right.In selection sort, the first smallest element is selected from the unsorted array and placed at the first position. After that second smallest element is selected and placed in the second position. The process continues until the array is entirely sorted.The average and worst-case complexity of selection sort is O(n2), where n is the number of items. Due to this, it is not suitable for large data set",
+            "Insertion Sort": "Insertion sort works similar to the sorting of playing cards in hands. It is assumed that the first card is already sorted in the card game, and then we select an unsorted card. If the selected unsorted card is greater than the first card, it will be placed at the right side; otherwise, it will be placed at the left side. Similarly, all unsorted cards are taken and put in their exact place.The same approach is applied in insertion sort. The idea behind the insertion sort is that first take one element, iterate it through the sorted array. Although it is simple to use, it is not appropriate for large data sets as the time complexity of insertion sort in the average case and worst case is O(n2), where n is the number of items. Insertion sort is less efficient than the other sorting algorithms like heap sort, quick sort, merge sort, etc.",
+            "Merge Sort": "Merge sort is similar to the quick sort algorithm as it uses the divide and conquer approach to sort the elements. It is one of the most popular and efficient sorting algorithm. It divides the given list into two equal halves, calls itself for the two halves and then merges the two sorted halves. We have to define the merge() function to perform the merging.The sub-lists are divided again and again into halves until the list cannot be divided further. Then we combine the pair of one element lists into two-element lists, sorting them in the process. The sorted two-element pairs is merged into the four-element lists, and so on until we get the sorted list.",
+            "Quick Sort": "Sorting is a way of arranging items in a systematic manner. Quicksort is the widely used sorting algorithm that makes n log n comparisons in average case for sorting an array of n elements. It is a faster and highly efficient sorting algorithm. This algorithm follows the divide and conquer approach. Divide and conquer is a technique of breaking down the algorithms into subproblems, then solving the subproblems, and combining the results back together to solve the original problem.Divide: In Divide, first pick a pivot element. After that, partition or rearrange the array into two sub-arrays such that each element in the left sub-array is less than or equal to the pivot element and each element in the right sub-array is larger than the pivot element.Conquer: Recursively, sort two subarrays with Quicksort.Combine: Combine the already sorted array.Quicksort picks an element as pivot, and then it partitions the given array around the picked pivot element. In quick sort, a large array is divided into two arrays in which one holds values that are smaller than the specified value (Pivot), and another array holds the values that are greater than the pivot.After that, left and right sub-arrays are also partitioned using the same approach. It will continue until the single element remains in the sub-array."
+            // Add more algorithms and their information here
+        };
+        
+
+        // Display information if algorithm is selected
+        if (selectedAlgorithm !== "Choose algorithm") {
+            infoDiv.innerHTML = algorithmInfo[selectedAlgorithm];
+            if (selectedAlgorithm === "Bubble Sort") {
+              var buttonContainer = document.createElement("div");
+              buttonContainer.classList.add("but_container");
+
+              var algorithmHeading = document.createElement("h3");
+              algorithmHeading.textContent = selectedAlgorithm;
+              infoDiv.appendChild(algorithmHeading);
+
+              var refText = document.createElement("p");
+            refText.textContent = "References";
+            refText.style.fontWeight = "bold"; // Make text bold
+            refText.style.textAlign = "center";
+            buttonContainer.appendChild(refText);
+
+              infoDiv.innerHTML = algorithmInfo["Bubble Sort"];
+
+              
+              var refButton = document.createElement("a");
+              refButton.href = "https://youtu.be/p__ETf2CKY4?si=vhIgBUY-r6BY6urV";
+              refButton.target = "_blank";
+              refButton.innerHTML = "";
+              refButton.classList.add("ref_buttony");
+              buttonContainer.appendChild(refButton);
+              var refText = document.createElement("p");
+              refText.textContent = "Watch video tutorial";
+               // Make text bold
+              refText.style.textAlign = "center";
+              buttonContainer.appendChild(refText);
+              infoDiv.appendChild(buttonContainer);
+              //for W3 schools
+              var refButton2 = document.createElement("a");
+              refButton2.href = "https://www.geeksforgeeks.org/bubble-sort/";
+              refButton2.target = "_blank";
+              refButton2.innerHTML = "";
+              refButton2.classList.add("ref_buttonW");
+              buttonContainer.appendChild(refButton2);
+              var refText2 = document.createElement("p");
+              refText2.textContent = "Read more on GeeksforGeeks";
+               // Make text bold
+            refText2.style.textAlign = "center";
+              buttonContainer.appendChild(refText2);
+              
+
+              
+
+            } else if (selectedAlgorithm === "Selection Sort") {
+              var buttonContainer = document.createElement("div");
+              buttonContainer.classList.add("but_container");
+
+              var refText = document.createElement("p");
+            refText.textContent = "References";
+            refText.style.fontWeight = "bold"; // Make text bold
+            refText.style.textAlign = "center";
+            buttonContainer.appendChild(refText);
+
+              infoDiv.innerHTML = algorithmInfo["Selection Sort"];
+              var refButton = document.createElement("a");
+              refButton.href = "https://youtu.be/dds119w9o3k?si=3bB-HhZFamKL88zM";
+              refButton.target = "_blank";
+              refButton.innerHTML = "";
+              refButton.classList.add("ref_buttony");
+              buttonContainer.appendChild(refButton);
+              var refText = document.createElement("p");
+              refText.textContent = "Watch video tutorial";
+               // Make text bold
+              refText.style.textAlign = "center";
+              buttonContainer.appendChild(refText);
+              infoDiv.appendChild(buttonContainer);
+              //for W3 schools
+              var refButton2 = document.createElement("a");
+              refButton2.href = "https://www.geeksforgeeks.org/selection-sort/";
+              refButton2.target = "_blank";
+              refButton2.innerHTML = "";
+              refButton2.classList.add("ref_buttonW");
+              buttonContainer.appendChild(refButton2);
+              var refText2 = document.createElement("p");
+              refText2.textContent = "Read more on GeeksforGeeks";
+               // Make text bold
+            refText2.style.textAlign = "center";
+              buttonContainer.appendChild(refText2);
+              
+              
+
+              
+            } else if (selectedAlgorithm === "Insertion Sort") {
+              var buttonContainer = document.createElement("div");
+              buttonContainer.classList.add("but_container");
+              
+              var refText = document.createElement("p");
+            refText.textContent = "References";
+            refText.style.fontWeight = "bold"; // Make text bold
+            refText.style.textAlign = "center";
+            buttonContainer.appendChild(refText);
+
+              infoDiv.innerHTML = algorithmInfo["Insertion Sort"];
+              var refButton = document.createElement("a");
+              refButton.href = "https://youtu.be/oTICKmJhLXI?si=EAPmSSsCuaUUHTxv";
+              refButton.target = "_blank";
+              refButton.innerHTML = "";
+              refButton.classList.add("ref_buttony");
+              buttonContainer.appendChild(refButton);
+              var refText = document.createElement("p");
+              refText.textContent = "Watch video tutorial";
+               // Make text bold
+              refText.style.textAlign = "center";
+              buttonContainer.appendChild(refText);
+              infoDiv.appendChild(buttonContainer);
+              //for W3 schools
+              var refButton2 = document.createElement("a");
+              refButton2.href = "https://www.geeksforgeeks.org/insertion-sort/";
+              refButton2.target = "_blank";
+              refButton2.innerHTML = "";
+              refButton2.classList.add("ref_buttonW");
+              buttonContainer.appendChild(refButton2);
+              var refText2 = document.createElement("p");
+              refText2.textContent = "Read more on GeeksforGeeks";
+               // Make text bold
+            refText2.style.textAlign = "center";
+              buttonContainer.appendChild(refText2);
+              
+              
+
+              
+            } else if (selectedAlgorithm === "Merge Sort") {
+              var buttonContainer = document.createElement("div");
+              buttonContainer.classList.add("but_container");
+
+              var refText = document.createElement("p");
+            refText.textContent = "References";
+            refText.style.fontWeight = "bold"; // Make text bold
+            refText.style.textAlign = "center";
+            buttonContainer.appendChild(refText);
+
+              infoDiv.innerHTML = algorithmInfo["Merge Sort"];
+              var refButton = document.createElement("a");
+              refButton.href = "https://youtu.be/mB5HXBb_HY8?si=1YbTlYBvf0F2MOZC";
+              refButton.target = "_blank";
+              refButton.innerHTML = "";
+              refButton.classList.add("ref_buttony");
+              buttonContainer.appendChild(refButton);
+              var refText = document.createElement("p");
+              refText.textContent = "Watch video tutorial";
+               // Make text bold
+              refText.style.textAlign = "center";
+              buttonContainer.appendChild(refText);
+              infoDiv.appendChild(buttonContainer);
+              //for W3 schools
+              var refButton2 = document.createElement("a");
+              refButton2.href = "https://www.geeksforgeeks.org/merge-sort/";
+              refButton2.target = "_blank";
+              refButton2.innerHTML = "";
+              refButton2.classList.add("ref_buttonW");
+              buttonContainer.appendChild(refButton2);
+              var refText2 = document.createElement("p");
+              refText2.textContent = "Read more on GeeksforGeeks";
+               // Make text bold
+            refText2.style.textAlign = "center";
+              buttonContainer.appendChild(refText2);
+              
+              
+
+              
+            } else if (selectedAlgorithm === "Quick Sort") {
+              var buttonContainer = document.createElement("div");
+              buttonContainer.classList.add("but_container");
+
+              var refText = document.createElement("p");
+            refText.textContent = "References";
+            refText.style.fontWeight = "bold"; // Make text bold
+            refText.style.textAlign = "center";
+            buttonContainer.appendChild(refText);
+
+              infoDiv.innerHTML = algorithmInfo["Quick Sort"];
+              var refButton = document.createElement("a");
+              refButton.href = "https://youtu.be/7h1s2SojIRw?si=gJSWeahPUqf5wm_O";
+              refButton.target = "_blank";
+              refButton.innerHTML = "";
+              refButton.classList.add("ref_buttony");
+              buttonContainer.appendChild(refButton);
+              var refText = document.createElement("p");
+              refText.textContent = "Watch video tutorial";
+               // Make text bold
+              refText.style.textAlign = "center";
+              buttonContainer.appendChild(refText);
+              infoDiv.appendChild(buttonContainer);
+              //for W3 schools
+              var refButton2 = document.createElement("a");
+              refButton2.href = "https://www.geeksforgeeks.org/quick-sort/";
+              refButton2.target = "_blank";
+              refButton2.innerHTML = "";
+              refButton2.classList.add("ref_buttonW");
+              buttonContainer.appendChild(refButton2);
+              var refText2 = document.createElement("p");
+              refText2.textContent = "Read more on GeeksforGeeks";
+               // Make text bold
+            refText2.style.textAlign = "center";
+              buttonContainer.appendChild(refText2);
+              
+              
+
+              
+            }
+        } else {
+            infoDiv.innerHTML = ""; // Clear the info if no algorithm is selected
+        }
+    }
+</script>
+
+    <footer class="footer">
+      <p></p>
+      <p>
+      </p>
+    </footer>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/helper.js"></script>
+    <script src="./scripts/sort-algorithms.js"></script>
+  </body>
+</html>

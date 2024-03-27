@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0px;
+
+        padding: 0px;
+
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow-y: hidden; /* Hide vertical scrollbar */
+        overflow-x: hidden;
+      }
+
+      .body-text {
+        display: flex;
+
+        font-family: "Montserrat", sans-serif;
+
+        align-items: center;
+
+        justify-content: center;
+
+        margin-top: 50px;
+      }
+
+      .content {
+        display: flex;
+
+        font-family: "Montserrat", sans-serif;
+
+        align-items: center;
+
+        justify-content: center;
+
+        margin: 50px 70px 50px 70px;
+      }
+
+      nav {
+        display: flex;
+
+        justify-content: space-around;
+
+        align-items: center;
+
+        min-height: 8vh;
+
+        background-color: #756ab6;
+
+        font-family: "Montserrat", sans-serif;
+      }
+      .nav_s {
+        display: flex;
+
+        justify-content: space-around;
+
+        align-items: center;
+
+        min-height: 8vh;
+
+        background-color: #756ab6;
+
+        font-family: "Montserrat", sans-serif;
+      }
+      .nav-links {
+        display: flex;
+
+        justify-content: space-around;
+
+        width: 30%;
+      }
+
+      .nav-links li {
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: white;
+
+        text-decoration: none;
+
+        letter-spacing: 3px;
+
+        font-weight: bold;
+
+        font-size: 14px;
+
+        padding: 14px 16px;
+      }
+
+      .nav-links a:hover:not(.active) {
+        background-color: #e0aed0;
+        color: black;
+      }
+
+      .nav-links li a.active {
+        background-color: #ac87c5;
+      }
+      .heading {
+        color: white;
+
+        text-transform: uppercase;
+
+        letter-spacing: 5px;
+
+        font-size: 20px;
+      }
+
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+        max-width: 300px;
+
+        margin: auto;
+
+        text-align: center;
+
+        font-family: arial;
+      }
+
+      .card-body {
+        padding: 2px 16px;
+      }
+
+      @media screen and (max-width: 600px) {
+        .card {
+          width: 100%;
+          flex-direction: column;
+        }
+        img {
+          width: 100%;
+        }
+      }
+      img {
+        padding: 5px 5px 5px 5px;
+        border-radius: 50%;
+      }
+
+      .card:hover {
+        transform: scale(1.1);
+      }
+    </style>
+
+    <title>About</title>
+  </head>
+
+  <body>
+    <nav>
+      <div class="heading">
+        <h4>Sort Visualizer</h4>
+      </div>
+
+      <ul class="nav-links">
+        <li><a class="active" href="index.html">Home</a></li>
+
+        <li><a href="about.html">About</a></li>
+
+        <li><a href="sort.html">Sorting</a></li>
+
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="body-text"><h1>About Sort Visualizer</h1></div>
+    <center>
+      <p class="content">
+        This is a simple web application that visualizes sorting algorithms. It
+        was created using HTML, CSS, and JavaScript. The sorting algorithms
+        visualized are Bubble Sort, Selection Sort, Insertion Sort, Merge Sort,
+        and Quick Sort. The application also allows the user to change the size
+        of the array, the speed of the visualization, and the color of the bars.
+      </p>
+    </center>
+
+    <div class="body-text"><h1>Developers</h1></div>
+    <div class="content">
+      <div class="card">
+        <img src="yogesh2.jpg" alt="Developer 1" width="200px" height="200px" />
+
+        <div class="card-body">
+          <h3>Yogesh Balgi</h3>
+          <br />
+          <p class="title">CSS Developer</p>
+          <br />
+        </div>
+      </div>
+      <div class="card">
+        <img src="suyog.jpg" alt="Developer 1" width="200px" height="200px" />
+
+        <div class="card-body">
+          <h3>Suyog Karekar</h3>
+          <br />
+          <p class="title">Project Resource Manager</p>
+          <br />
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="aryan.jpg" alt="Developer 1" width="200px" height="200px" />
+
+        <div class="card-body">
+          <h3>Aryan Belle</h3>
+          <br />
+          <p class="title">JavaScript Developer</p>
+          <br />
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="sahil.jpg" alt="Developer 1" width="200px" height="200px" />
+        <br />
+        <div class="card-body">
+          <h3>Sahil Arate</h3>
+          <br />
+          <p class="title">HTML Developer</p>
+          <br />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
